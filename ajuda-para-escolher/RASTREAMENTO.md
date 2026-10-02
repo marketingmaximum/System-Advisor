@@ -1,15 +1,18 @@
 # Rastreamento · /ajuda-para-escolher
 
+> **Versão em produção:** dentro do Portal (repo `marketingmaximum/Portal-Software`, branch `claude/maximum-landing-page-by548v`). Mapa dos arquivos em `docs/system-advisor.md` de lá. As regras abaixo valem para as duas versões; no Portal as chaves de storage e os nomes de evento são os mesmos. O Portal já carrega o GTM e o GA4 pelo layout (tags que existiam antes desta demanda).
+
 A página **não carrega nenhuma tag de fornecedor**. Ela só empurra eventos para `window.dataLayer`, e o container do GTM do Portal lê esses eventos. Nome, e-mail, telefone, empresa e sistema atual **nunca** vão para o dataLayer (o `track()` de `js/rastreamento.js` filtra essas chaves, e o `scripts/qa-fluxo.js` confere).
 
 ## IDs (nenhum está em fonte nenhuma, ficam vazios)
 
 | Item | Valor | Onde conseguir |
 |---|---|---|
-| Container GTM do Portal | **TODO** | Gabriel / conta do Portal |
-| GA4 (ID de medição) | **TODO** | Gabriel |
+| Container GTM do Portal | `GTM-T9G6NRWM` | já instalado em `src/app/layout.tsx` do Portal (repo Portal-Software) |
+| GA4 (ID de medição) | `G-6EW1689672` | já instalado em `src/app/layout.tsx` do Portal |
 | Google Ads: ID da conta (AW-…) e rótulo da conversão "Lead qualificado" | **TODO** | Conta do Google Ads com o cartão do Alexandre (card 106be851) |
-| ENDPOINT do lead (`CONFIG.ENDPOINT` em `js/lp.js`) | **TODO** | Back-end do Portal. Zoho sem webhook ainda (card 7e7712ad) |
+| ENDPOINT do lead | `/api/leads/system-advisor` no Portal (feito) | No protótipo estático, `CONFIG.ENDPOINT` segue vazio |
+| Repasse à System Advisor | **TODO**: `SYSTEM_ADVISOR_WEBHOOK_URL` (Zoho, sem webhook ainda) e/ou `SYSTEM_ADVISOR_LEAD_EMAIL` | Card 7e7712ad / 28ee3e84 |
 | Meta Pixel | não se aplica | Campanha é só Google, rede de pesquisa (card 106be851) |
 
 ## Origem da visita

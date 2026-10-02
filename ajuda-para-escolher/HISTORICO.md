@@ -54,3 +54,15 @@
 | Fora desses pontos nada muda | OK (o script só age nos marcadores `data-sa-slot`, no artigo marcado e na faixa/pop-up; nunca roda na /ajuda-para-escolher) |
 | Botões com utm_source=portal e utm_content por bloco | OK |
 | Pop-up em 50%, 1 vez, fechou = 30 dias, enviou = nunca | OK |
+
+## 02/10/2026 · Integração no Portal (repo marketingmaximum/Portal-Software)
+- Branch `claude/maximum-landing-page-by548v`, commit 33880ae. Nada foi para a `main`.
+- Rotas novas: `/ajuda-para-escolher`, `/ajuda-para-escolher/obrigado` (qualificado), `/ajuda-para-escolher/guia` (não qualificado), `POST /api/leads/system-advisor`.
+- Componentes do Portal reaproveitados: Sheet, Button, Field, Input, Select, Breadcrumb, `pushDataLayer` e o cookie de atribuição `_ps_attr`. Fonte Archivo do próprio Portal (next/font).
+- Leads na tabela `Lead` sem migração: `source = system-advisor` (qualificado) ou `ajuda-para-escolher-guia` (não qualificado), respostas em `message` (JSON). O servidor refaz o filtro.
+- Repasse do qualificado: env `SYSTEM_ADVISOR_WEBHOOK_URL` (Zoho) e/ou `SYSTEM_ADVISOR_LEAD_EMAIL` (Brevo). Sem eles o lead fica `pending` no banco.
+- Blocos: alternativas-a/[slug] (acima da lista), categorias/erp-completo (abaixo do título, número = total da categoria), comparar/[slugs] (depois da tabela), blog/[slug] (posts com categoria de gestão/ERP, fim da seção do 2º h2, nunca em patrocinado). Faixa e pop-up no layout, nas mesmas páginas onde aparecem os avisos da newsletter.
+- **Mudança fora dos 6 pontos (decisão minha, para revisão):** o pop-up da newsletter agora não abre se o pop-up da System Advisor já abriu na visita, para não empilhar dois modais.
+- IDs encontrados no código do Portal: GTM-T9G6NRWM e GA4 G-6EW1689672. Conversão do Google Ads continua TODO.
+- QA contra o Portal rodando (next dev, cópia do dev.db): `scripts/qa-portal.js` 59/59. tsc e eslint limpos nos arquivos novos (o `prefer-const` em categorias/[slug] linha 187 já existia). `next build` não foi rodado aqui (o blog busca posts no WordPress durante o build).
+- Bloco do blog testado só pela função (`saInjetarBlocoBlog`), porque o WordPress não responde no ambiente local.
