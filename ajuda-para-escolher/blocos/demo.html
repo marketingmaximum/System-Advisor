@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Blocos System Advisor · demonstração</title>
+<link rel="stylesheet" href="../css/lp.css">
+<link rel="stylesheet" href="blocos.css">
+<style>
+  .demo { padding: 32px 0 64px; }
+  .demo h2.demo-t { font-size: .8125rem; font-weight: 600; color: var(--ink-3); margin: 48px 0 8px; border-top: 1px dashed var(--rule-strong); padding-top: 12px; }
+  .fake { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; color: var(--ink-3); }
+  article p { max-width: 68ch; color: var(--ink-2); }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap"><a class="logo" href="#"><img src="../img/logo-portal-software.webp" alt="Portal Software" width="103" height="34"></a></div></header>
+<main class="demo"><div class="wrap">
+  <h1 class="h2">Demonstração dos 6 pontos de entrada</h1>
+  <p class="lead">Página de teste. No Portal, cada bloco entra só no seu ponto.</p>
+
+  <h2 class="demo-t">1 · /alternativas-a/… — acima da lista</h2>
+  <div data-sa-slot="alternativas"></div>
+  <div class="fake">Lista de alternativas…</div>
+
+  <h2 class="demo-t">2 · /categorias/erp-completo — logo abaixo do título (número dinâmico)</h2>
+  <h3 class="h2" style="font-size:1.5rem">Melhores Softwares de ERP Completo</h3>
+  <div data-sa-slot="erp" data-sa-total="1343"></div>
+  <div class="fake">Ranking…</div>
+
+  <h2 class="demo-t">3 · /comparar/… — logo depois da tabela</h2>
+  <div class="fake">Tabela do comparador…</div>
+  <div data-sa-slot="comparador"></div>
+
+  <h2 class="demo-t">6 · Blog, artigo de gestão/ERP — no fim da seção do 2º subtítulo</h2>
+  <article data-sa-tema="gestao">
+    <p>Introdução do artigo…</p>
+    <h2 class="h3">Subtítulo 1</h2><p>Texto…</p>
+    <h2 class="h3">Subtítulo 2</h2><p>Texto da seção 2…</p>
+    <h2 class="h3">Subtítulo 3</h2><p>Texto…</p>
+  </article>
+
+  <h2 class="demo-t">4 e 5 · Faixa no topo e pop-up em 50% da rolagem</h2>
+  <p class="lead">A faixa aparece no topo. O pop-up só aparece numa visita em que a faixa não apareceu (faixa fechada nos últimos 30 dias).</p>
+  <div style="height:1600px"></div>
+</div></main>
+<script src="blocos.js"></script>
+</body>
+</html>
