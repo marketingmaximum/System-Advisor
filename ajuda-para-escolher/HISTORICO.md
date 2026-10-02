@@ -66,3 +66,11 @@
 - IDs encontrados no código do Portal: GTM-T9G6NRWM e GA4 G-6EW1689672. Conversão do Google Ads continua TODO.
 - QA contra o Portal rodando (next dev, cópia do dev.db): `scripts/qa-portal.js` 59/59. tsc e eslint limpos nos arquivos novos (o `prefer-const` em categorias/[slug] linha 187 já existia). `next build` não foi rodado aqui (o blog busca posts no WordPress durante o build).
 - Bloco do blog testado só pela função (`saInjetarBlocoBlog`), porque o WordPress não responde no ambiente local.
+
+## 02/10/2026 · Retorno do Alexandre (via Pedro)
+- **Filtro:** reunião para quem fatura a partir de R$ 50 mi/ano **ou** tem mais de 150 funcionários. Portal atualizado: `saQualificado(faturamento, funcionarios)`, faixas de funcionários agora "51 a 150" e "151 a 500", faixa de faturamento "R$ 20 a 49 milhões" para não ficar ambígua no corte.
+- **Abaixo do corte:** o Alexandre sugeriu um "selection digital" de R$ 4,5 mil; o João ainda está fechando os perfis. A página não fala de preço (regra do card) e o não qualificado segue recebendo o guia gratuito até essa definição.
+- **Dores:** as 10 dores enviadas no grupo substituíram o rascunho da dobra "O que costuma dar errado" (7 itens, em tom de guia). O exemplo da RFI da Vollmens (27%) ficou de fora: é caso de cliente, precisa de autorização.
+- **Verba:** João propôs R$ 600/mês; falta o Alexandre confirmar e cadastrar o cartão.
+- QA no Portal: 63/63 (inclui qualificado só por funcionários). Prints do cliente refeitos.
+- O protótipo estático (index.html desta pasta) ficou na versão anterior; a versão que vale é a do Portal.

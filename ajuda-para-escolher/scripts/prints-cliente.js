@@ -27,7 +27,7 @@ async function limpar(page) {
 
 async function preencher(page, faixa) {
   await page.selectOption('#sa-faturamento', faixa);
-  await page.selectOption('#sa-funcionarios', '201_500');
+  await page.selectOption('#sa-funcionarios', faixa === '20_50' ? '51_150' : 'ate_50');
   await page.fill('#sa-sistema_atual', 'Planilhas');
   await page.selectOption('#sa-prazo', '3_6m');
   await page.fill('#sa-nome', 'Cliente Teste');

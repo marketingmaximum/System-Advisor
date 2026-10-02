@@ -17,9 +17,9 @@ async function novoContexto(browser, vp) {
 }
 const dl = (page) => page.evaluate(() => (window.dataLayer || []).filter((e) => e && e.event).map((e) => ({ ...e })));
 
-async function preencher(page, faixa) {
+async function preencher(page, faixa, funcionarios = 'ate_50') {
   await page.selectOption('#sa-faturamento', faixa);
-  await page.selectOption('#sa-funcionarios', '201_500');
+  await page.selectOption('#sa-funcionarios', funcionarios);
   await page.fill('#sa-sistema_atual', 'Planilhas QA');
   await page.selectOption('#sa-prazo', '3_6m');
   await page.fill('#sa-nome', 'Maria QA');
@@ -57,6 +57,7 @@ async function preencher(page, faixa) {
     const page = await ctx.newPage();
     await page.goto(PAGINA, { waitUntil: 'networkidle' });
     const d = await page.evaluate(() => ({
+      erros: document.querySelectorAll('#dar-errado li').length,
       h1: [...document.querySelectorAll('h1')].map((h) => h.textContent.trim()),
       robots: document.querySelector('meta[name=robots]')?.content,
       canonical: document.querySelector('link[rel=canonical]')?.href,
@@ -78,6 +79,7 @@ async function preencher(page, faixa) {
     r.check(!d.equipe, 'System Advisor nunca como equipe do Portal');
     r.check(d.ctas.every((h) => /#conversar$/.test(h)), `CTAs levam ao formulário (${d.ctas.length})`);
     r.check(d.semLabel === 0, 'todo campo com label');
+    r.check(d.erros === 7, `dobra 2 com as 7 dores do Alexandre (${d.erros})`);
     r.check(d.lgpd, 'aviso de LGPD junto do botão, citando a System Advisor');
     r.check(d.agencia, 'link para agenciamaximum.com no rodapé do Portal');
     for (const s of ['dar-errado', 'trocar-ou-ajustar', 'passo-a-passo', 'quem-atende', 'conversar']) {
@@ -138,7 +140,7 @@ async function preencher(page, faixa) {
     const ctx = await novoContexto(browser, VIEWPORTS.mobile);
     const page = await ctx.newPage();
     await page.goto(PAGINA + '?utm_source=portal&utm_content=comparador', { waitUntil: 'networkidle' });
-    await preencher(page, '20_50');
+    await preencher(page, '20_50', '51_150');
     const resp = page.waitForResponse((res) => res.url().includes('/api/leads/system-advisor'));
     await page.click('form button[type=submit]');
     const json = await (await resp).json();
@@ -154,6 +156,25 @@ async function preencher(page, faixa) {
     await page.goto(BASE + '/ajuda-para-escolher/obrigado', { waitUntil: 'networkidle' });
     await page.waitForURL('**/ajuda-para-escolher/guia', { timeout: 5000 }).catch(() => {});
     r.check(page.url().endsWith('/ajuda-para-escolher/guia'), 'não qualificado no obrigado do especialista volta para o do guia');
+    await ctx.close();
+  }
+
+  // 4b · Qualificado só pelo número de funcionários (mais de 150), com faturamento baixo
+  {
+    const ctx = await novoContexto(browser, VIEWPORTS.desktop);
+    const page = await ctx.newPage();
+    await page.goto(PAGINA, { waitUntil: 'networkidle' });
+    await preencher(page, 'ate_20', '151_500');
+    const resp = page.waitForResponse((res) => res.url().includes('/api/leads/system-advisor'));
+    await page.click('form button[type=submit]');
+    const json = await (await resp).json();
+    r.check(json.qualificado === true, 'faturamento até R$ 20 mi + 151 a 500 funcionários → qualificado');
+    await page.waitForURL('**/ajuda-para-escolher/obrigado');
+    r.ok('… e vai para o obrigado do especialista');
+    const lim = await ctx.request.post(BASE + '/api/leads/system-advisor', {
+      data: { faturamento: '20_50', funcionarios: '51_150', sistema_atual: 'x QA', prazo: 'pesquisando', nome: 'Maria QA', empresa: 'ACME QA', email: 'qa.portal@empresa.com.br', telefone: '11987654321' },
+    });
+    r.check((await lim.json()).qualificado === false, 'R$ 20 a 49 mi + 51 a 150 funcionários → não qualificado');
     await ctx.close();
   }
 
