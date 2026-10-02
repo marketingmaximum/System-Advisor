@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Direção A · Ficha do guia</title>
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* HERO: texto à esquerda, ficha-índice do guia à direita */
+  .hero { padding: clamp(32px, 5vw, 72px) 0 clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--rule); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .crumb { font-size: .875rem; color: var(--ink-2); margin: 0 0 20px; }
+  .crumb span { color: var(--rule-strong); margin: 0 6px; }
+  .hero .h1 { font-size: clamp(2.25rem, 1.4rem + 3.1vw, 4rem); max-width: 15ch; }
+  .hero .lead { margin-top: 20px; }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; }
+  .hero-context { margin: 28px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); font-size: .875rem; color: var(--ink-2); max-width: 60ch; }
+
+  .toc ol { list-style: none; margin: 0; padding: 0; }
+  .toc li + li { border-top: 1px solid var(--rule); }
+  .toc a { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: baseline; padding: 14px 16px; color: var(--ink); text-decoration: none; }
+  .toc a:hover { background: var(--bg); }
+  .toc .n { font-weight: 700; font-variant-numeric: tabular-nums lining-nums; color: var(--ink-3); }
+  .toc .t { font-weight: 600; }
+  .toc .d { grid-column: 2; font-size: .875rem; color: var(--ink-2); }
+  .toc .arrow { grid-row: 1; grid-column: 3; color: var(--ink-3); align-self: center; }
+  .toc .last a { background: var(--action-soft); }
+  .toc .last .t { color: var(--action-hover); }
+  .toc-foot { padding: 10px 16px; border-top: 1px solid var(--rule); background: var(--plate); }
+
+  /* PASSO A PASSO: ficha com linhas rotuladas */
+  .steps { padding: var(--section) 0; }
+  .steps-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin-bottom: 32px; }
+  .steps-head .lead { font-size: 1.0625rem; }
+  .step-row { display: grid; grid-template-columns: 72px minmax(0, 1.1fr) minmax(0, 1.6fr); gap: 0 24px; padding: 20px 16px; align-items: baseline; }
+  .step-row + .step-row { border-top: 1px solid var(--rule); }
+  .step-row .n { font-size: 1.75rem; font-weight: 700; font-variation-settings: "wdth" 108; font-variant-numeric: tabular-nums lining-nums; line-height: 1; }
+  .step-row h3 { margin: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.3; }
+  .step-row p { margin: 0; color: var(--ink-2); }
+  .step-row .src { display: block; margin-top: 6px; }
+  .steps-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 16px; border-top: 1px solid var(--rule); background: var(--plate); }
+
+  @media (max-width: 900px) {
+    .hero .wrap, .steps-head { grid-template-columns: 1fr; }
+    .step-row { grid-template-columns: 44px minmax(0, 1fr); gap: 6px 12px; }
+    .step-row p { grid-column: 2; }
+    .step-row .n { font-size: 1.375rem; }
+  }
+  @media (max-width: 480px) {
+    .hero-actions .btn { width: 100%; }
+    .hero-actions { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="../img/logo-portal-software.webp" alt="Portal Software" width="160" height="53"></a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/categorias">Categorias</a><a href="/melhores-softwares">Melhores Softwares</a><a href="/comparar">Comparar</a><a href="/blog">Blog</a><a href="/noticias">Notícias</a>
+    </nav>
+    <button class="menu" aria-label="Abrir menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="crumb">Portal Software<span>›</span>Guias</p>
+        <h1 class="h1">Precisa de ajuda para escolher um sistema de gestão?</h1>
+        <p class="lead">Um guia curto para escolher ou trocar de ERP sem se arrepender: o que costuma dar errado, quando vale ajustar em vez de trocar e como funciona uma escolha bem feita.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#conversar">Quero ajuda para escolher</a>
+          <a class="link-quiet" href="#dar-errado">Ler o guia primeiro</a>
+        </div>
+        <p class="hero-context">Guia do Portal Software, o diretório com mais de 14 mil sistemas comparados.</p>
+      </div>
+
+      <aside class="ficha toc" aria-label="Neste guia">
+        <div class="ficha-band"><strong>Neste guia</strong><span class="label">5 partes</span></div>
+        <ol>
+          <li><a href="#dar-errado"><span class="n">1</span><span class="t">O que costuma dar errado</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span class="d">Quatro erros comuns na escolha</span></a></li>
+          <li><a href="#trocar-ou-ajustar"><span class="n">2</span><span class="t">Trocar ou ajustar</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span class="d">Nem toda dor pede um sistema novo</span></a></li>
+          <li><a href="#passo-a-passo"><span class="n">3</span><span class="t">Passo a passo</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span class="d">Da lista longa aos finalistas</span></a></li>
+          <li><a href="#quem-atende"><span class="n">4</span><span class="t">Quem atende</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span class="d">Uma consultoria parceira independente</span></a></li>
+          <li class="last"><a href="#conversar"><span class="n">5</span><span class="t">Conversar com um especialista</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span class="d">Quatro perguntas sobre a empresa</span></a></li>
+        </ol>
+        <div class="toc-foot partner-note">System Advisor, consultoria parceira independente</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="steps" id="passo-a-passo">
+    <div class="wrap">
+      <div class="steps-head">
+        <h2 class="h2">Como uma escolha bem feita funciona, passo a passo</h2>
+        <p class="lead">A ordem importa: primeiro o que a empresa precisa, depois os fornecedores. Assim cada demonstração responde à sua lista, e não ao roteiro de vendas.</p>
+      </div>
+      <div class="ficha">
+        <div class="ficha-band"><strong>Roteiro de seleção</strong><span class="label">6 etapas</span></div>
+        <div class="step-row"><span class="n">1</span><h3>Mapear o que a empresa precisa</h3><p>Os requisitos de cada área viram uma lista escrita, a partir de um banco de RFIs de mercado.</p></div>
+        <div class="step-row"><span class="n">2</span><h3>Montar a lista longa</h3><p>Todos os fornecedores que podem atender, não só os nomes conhecidos.</p></div>
+        <div class="step-row"><span class="n">3</span><h3>Enviar o RFI e comparar as respostas</h3><p>Cada fornecedor responde à mesma lista, e as respostas viram um relatório comparativo.</p></div>
+        <div class="step-row"><span class="n">4</span><h3>Chegar a 4 a 6 finalistas</h3><p>Só seguem os que cobrem os requisitos que mais pesam para a operação.</p></div>
+        <div class="step-row"><span class="n">5</span><h3>Reuniões com os finalistas</h3><p>Apresentações com o roteiro da empresa, não o do fornecedor.</p></div>
+        <div class="step-row"><span class="n">6</span><h3>Avaliar, escolher e negociar</h3><p>A decisão sai com critério escrito, e a negociação parte da comparação.</p></div>
+        <div class="steps-cta">
+          <span class="partner-note">Quer esse roteiro conduzido por quem faz isso todo dia?</span>
+          <a class="btn btn-primary" href="#conversar">Quero ajuda para escolher</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

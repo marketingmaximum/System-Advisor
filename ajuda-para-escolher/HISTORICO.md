@@ -6,3 +6,9 @@
 - Não há planejamentos (tráfego, público, quarter, SWOT), onboarding nem transcrição de 11/09 no Drive ou no Dados para este projeto.
 - Decisão: H1 do card, identidade do DESIGN.md do Portal (Archivo, fichas, sem foto), filtro só por faturamento com o mínimo numa constante (R$ 50 mi até a confirmação).
 - Plano em PLANO-F1.md. Aguardando aprovação do Pedro antes de qualquer HTML.
+
+## 02/10/2026 · F2 · Direções visuais
+- F1 aprovado pelo Pedro ("pode seguir, vai para revisão depois").
+- Archivo hospedada localmente (assets/fonts, subconjunto latin, OFL): fonte do DESIGN.md, sem licença paga.
+- Logo: logo-horizontal.webp baixado de portalsoftware.com.br (falta gerar versão no tamanho de uso na F3).
+- Direção A "Ficha do guia" e Direção B "Régua do roteiro" em direcoes/, screenshots em assets/screens/f2/. Aguardando escolha.

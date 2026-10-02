@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Direção B · Régua do roteiro</title>
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* HERO: título largo em coluna única, com a régua do roteiro na base */
+  .hero { background: var(--surface); border-bottom: 1px solid var(--rule); padding: clamp(36px, 5.5vw, 80px) 0 0; }
+  .hero-top { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: end; }
+  .hero .h1 { font-size: clamp(2.375rem, 1.3rem + 3.9vw, 4.5rem); line-height: 1.0; max-width: 17ch; }
+  .hero-side .lead { font-size: 1.125rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .hero-meta { margin-top: 16px; font-size: .875rem; color: var(--ink-2); }
+
+  /* Régua: escala calibrada com as 6 etapas, ponteiro em "antes de começar" */
+  .regua-wrap { margin-top: clamp(32px, 4.5vw, 56px); padding: 20px 0 28px; border-top: 1px solid var(--rule); }
+  .regua-cap { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .regua { position: relative; height: 22px; border-bottom: 2px solid var(--ink);
+    background:
+      repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px calc(100% / 6)) left bottom / 100% 12px no-repeat,
+      repeating-linear-gradient(90deg, var(--rule-strong) 0 1px, transparent 1px calc(100% / 24)) left bottom / 100% 6px no-repeat;
+  }
+  .regua::after { content: ""; position: absolute; right: 0; bottom: 0; width: 2px; height: 12px; background: var(--ink); }
+  .ponteiro { position: absolute; left: 0; bottom: -2px; width: 2px; height: 30px; background: var(--measure); }
+  .ponteiro::before { content: ""; position: absolute; top: -8px; left: -6px; border: 7px solid transparent; border-top: 9px solid var(--measure); }
+  .regua-labels { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 10px; }
+  .regua-labels li { list-style: none; font-size: .8125rem; font-variation-settings: "wdth" 84; color: var(--ink-2); padding-right: 12px; line-height: 1.3; }
+  .regua-labels b { display: block; color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 700; }
+  .regua-labels ol, ol.regua-labels { padding: 0; margin: 10px 0 0; }
+  .voce { margin-top: 12px; font-size: .8125rem; color: var(--measure-text); font-weight: 600; }
+
+  /* PASSO A PASSO: colunas alinhadas à régua */
+  .steps { padding: var(--section) 0; }
+  .steps .h2 { max-width: 22ch; }
+  .steps-intro { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+  .steps-intro .lead { max-width: 46ch; font-size: 1.0625rem; }
+  .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow-ficha); }
+  .col { padding: 20px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .col:nth-child(3n) { border-right: 0; }
+  .col:nth-last-child(-n+3) { border-bottom: 0; }
+  .col .k { font-size: .8125rem; font-variation-settings: "wdth" 84; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .col h3 { margin: 6px 0 8px; font-size: 1.0625rem; line-height: 1.3; font-weight: 700; }
+  .col p { margin: 0; color: var(--ink-2); font-size: .9375rem; }
+  .col .data { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+  .steps-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+
+  @media (max-width: 900px) {
+    .hero-top { grid-template-columns: 1fr; align-items: start; }
+    .cols { grid-template-columns: 1fr; }
+    .col { border-right: 0 !important; border-bottom: 1px solid var(--rule) !important; }
+    .col:last-child { border-bottom: 0 !important; }
+    .regua-labels { grid-template-columns: repeat(3, 1fr); row-gap: 10px; }
+    .regua { background-size: 100% 12px, 100% 6px; }
+  }
+  @media (max-width: 480px) { .hero-actions .btn { width: 100%; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="../img/logo-portal-software.webp" alt="Portal Software" width="160" height="53"></a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/categorias">Categorias</a><a href="/melhores-softwares">Melhores Softwares</a><a href="/comparar">Comparar</a><a href="/blog">Blog</a><a href="/noticias">Notícias</a>
+    </nav>
+    <button class="menu" aria-label="Abrir menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <h1 class="h1">Precisa de ajuda para escolher um sistema de gestão?</h1>
+        <div class="hero-side">
+          <p class="lead">Um guia curto para escolher ou trocar de ERP sem se arrepender: o que costuma dar errado, quando vale ajustar em vez de trocar e como funciona uma escolha bem feita.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#conversar">Quero ajuda para escolher</a>
+            <a class="btn btn-secondary" href="#dar-errado">Ler o guia</a>
+          </div>
+          <p class="hero-meta">Guia do Portal Software, o diretório com mais de 14 mil sistemas comparados.</p>
+        </div>
+      </div>
+
+      <div class="regua-wrap" aria-label="Roteiro de uma escolha bem feita">
+        <div class="regua-cap"><span class="label">Roteiro de uma escolha bem feita</span><a class="label" href="#passo-a-passo">Ver as 6 etapas</a></div>
+        <div class="regua" aria-hidden="true"><span class="ponteiro"></span></div>
+        <ol class="regua-labels">
+          <li><b>1</b>Mapear necessidades</li>
+          <li><b>2</b>Lista longa</li>
+          <li><b>3</b>RFI e comparação</li>
+          <li><b>4</b>4 a 6 finalistas</li>
+          <li><b>5</b>Reuniões</li>
+          <li><b>6</b>Escolha e negociação</li>
+        </ol>
+        <p class="voce">Você está aqui: antes de começar</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps" id="passo-a-passo">
+    <div class="wrap">
+      <div class="steps-intro">
+        <h2 class="h2">Como uma escolha bem feita funciona, passo a passo</h2>
+        <p class="lead">Primeiro o que a empresa precisa, depois os fornecedores. Assim cada demonstração responde à sua lista, e não ao roteiro de vendas.</p>
+      </div>
+      <div class="cols">
+        <div class="col"><span class="k">Etapa 1</span><h3>Mapear o que a empresa precisa</h3><p>Os requisitos de cada área viram uma lista escrita, a partir de um banco de RFIs de mercado.</p></div>
+        <div class="col"><span class="k">Etapa 2</span><h3>Montar a lista longa</h3><p>Todos os fornecedores que podem atender, não só os nomes conhecidos.</p></div>
+        <div class="col"><span class="k">Etapa 3</span><h3>Enviar o RFI e comparar</h3><p>Cada fornecedor responde à mesma lista, e as respostas viram um relatório comparativo.</p></div>
+        <div class="col"><span class="k">Etapa 4</span><h3>Chegar aos finalistas</h3><p><span class="data">4 a 6</span> fornecedores seguem: os que cobrem o que mais pesa para a operação.</p></div>
+        <div class="col"><span class="k">Etapa 5</span><h3>Reuniões com os finalistas</h3><p>Apresentações com o roteiro da empresa, não o do fornecedor.</p></div>
+        <div class="col"><span class="k">Etapa 6</span><h3>Avaliar, escolher e negociar</h3><p>A decisão sai com critério escrito, e a negociação parte da comparação.</p></div>
+      </div>
+      <div class="steps-foot">
+        <span class="partner-note">System Advisor, consultoria parceira independente</span>
+        <a class="btn btn-primary" href="#conversar">Quero ajuda para escolher</a>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
